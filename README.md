@@ -1,7 +1,7 @@
 # Spark Core 0.5.0
 
 This is the source code of Spark Core 0.5.0 with Spark examples, modified for running on JDK 1.8 and Scala 2.10.7. This
-code is solely for pedagogical purposes.
+code is solely for pedagogical purposes. The original code can be found at https://github.com/apache/spark/tree/v0.5.0.
 
 ## Build
 
