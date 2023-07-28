@@ -191,7 +191,7 @@ private trait DAGScheduler extends Scheduler with Logging {
       SparkEnv.set(env)
   
       updateCacheLocs()
-      
+
       logInfo("Final stage: " + finalStage)
       logInfo("Parents of final stage: " + finalStage.parents)
       logInfo("Missing parents: " + getMissingParentStages(finalStage))
@@ -295,7 +295,7 @@ private trait DAGScheduler extends Scheduler with Logging {
                 running -= failedStage
                 failed += failedStage
                 // TODO: Cancel running tasks in the stage
-                logInfo("Marking " + failedStage + " for resubmision due to a fetch failure")
+                logInfo("Marking " + failedStage + " for resubmission due to a fetch failure")
                 // Mark the map whose fetch failed as broken in the map stage
                 val mapStage = shuffleToMapStage(shuffleId)
                 mapStage.removeOutputLoc(mapId, serverUri)

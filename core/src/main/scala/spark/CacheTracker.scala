@@ -156,7 +156,7 @@ class CacheTracker(isMaster: Boolean, theCache: Cache) extends Logging {
   // is in the form of (host name, capacity, usage).
   def getCacheStatus(): Seq[(String, Long, Long)] = {
     (trackerActor !? GetCacheStatus) match {
-      case h: Seq[(String, Long, Long)] => h.asInstanceOf[Seq[(String, Long, Long)]]
+      case h: Seq[_] => h.asInstanceOf[Seq[(String, Long, Long)]]
 
       case _ =>
         throw new SparkException(
@@ -178,7 +178,7 @@ class CacheTracker(isMaster: Boolean, theCache: Cache) extends Logging {
       loading.synchronized {
         while (loading.contains(key)) {
           // Someone else is loading it; let's wait for them
-          try { loading.wait() } catch { case _ => }
+          try { loading.wait() } catch { case _: Throwable => }
         }
         // See whether someone else has successfully loaded it. The main way this would fail
         // is for the RDD-level cache eviction policy if someone else has loaded the same RDD

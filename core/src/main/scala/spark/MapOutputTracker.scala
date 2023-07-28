@@ -100,7 +100,7 @@ class MapOutputTracker(isMaster: Boolean) extends Logging {
             try {
               fetching.wait()
             } catch {
-              case _ =>
+              case _: Throwable =>
             }
           }
           return serverUris.get(shuffleId)

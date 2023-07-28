@@ -1,5 +1,8 @@
+val slf4jVersion = "1.6.1"
+val HADOOP_VERSION = "0.20.205.0"
+
 val shared = Seq(
-  organization := "org.spark-project",
+  organization := "space.imbiansl",
   version := "0.5.0",
   scalaVersion := "2.10.7",
   scalacOptions := Seq(/*"-deprecation",*/ "-unchecked", "-optimize"), // -deprecation is too noisy due to usage of old Hadoop API, enable it once that's no longer an issue
@@ -9,13 +12,10 @@ val shared = Seq(
   )
 )
 
-val slf4jVersion = "1.6.1"
-val HADOOP_VERSION = "0.20.205.0"
-
 lazy val root = (project in file("."))
   .aggregate(core, examples)
   .settings(
-    name := "spark-0-5"
+    name := "spark"
   )
 
 lazy val core = (project in file("core"))
@@ -40,7 +40,9 @@ lazy val core = (project in file("core"))
       "org.jboss.netty" % "netty" % "3.2.6.Final",
       "it.unimi.dsi" % "fastutil" % "6.4.2",
       "org.apache.mesos" % "mesos" % "0.9.0-incubating",
-      "org.scala-lang" % "scala-actors" % "2.10.7"
+      "org.scala-lang" % "scala-actors" % "2.10.7",
+      "org.scalatest" %% "scalatest" % "1.9.2" % Test,
+      "org.scalacheck" %% "scalacheck" % "1.9" % Test
     )
   )
 

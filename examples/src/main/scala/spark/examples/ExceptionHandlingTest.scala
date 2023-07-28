@@ -10,10 +10,13 @@ object ExceptionHandlingTest {
     }
 
     val sc = new SparkContext(args(0), "ExceptionHandlingTest")
-    sc.parallelize(0 until sc.defaultParallelism).foreach { i =>
+    val result = sc.parallelize(0 until sc.defaultParallelism).map { i =>
       if (Math.random > 0.75)
         throw new Exception("Testing exception handling")
-    }
+      1
+    }.reduce(_ + _)
+
+    println(sc.defaultParallelism + " splits computed.")
 
     System.exit(0)
   }
